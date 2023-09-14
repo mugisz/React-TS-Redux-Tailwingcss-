@@ -78,7 +78,7 @@ const Main: React.ComponentType<props> = ({ mainTodoMas, setMainTodoMas }) => {
               <span className="todoItemIndex">{mas.id}</span>
               <p className="todoItemText">{mas.title}</p>
               <button className="button-45" onClick={() => deliteMas(mas.id)}>
-                delite
+                delit
               </button>
             </div>
           ))}
