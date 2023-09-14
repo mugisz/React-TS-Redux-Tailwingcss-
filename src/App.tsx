@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import "./App.scss";
+import Header from "./components/Header/Header";
+import Main from "./screens/Main/Main";
+import { Route, Routes } from "react-router-dom";
+import AllTodos from "./screens/AllTodos/AllTodos";
+import SeeMore from "./screens/SeeMore/SeeMore";
+import AgreePage from "./screens/Agree/AgreePage";
+import { TodoMas } from "./interface/MyTodos";
 function App() {
+  const [mainTodoMas, setMainTodoMas] = React.useState<TodoMas[]>([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Header mainTodoMas={mainTodoMas} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Main mainTodoMas={mainTodoMas} setMainTodoMas={setMainTodoMas} />
+          }
+        />
+        <Route path="/all" element={<AllTodos />} />
+        <Route path="all/user/:id" element={<SeeMore />} />
+
+        <Route
+          path="/agree"
+          element={
+            <AgreePage
+              mainTodoMas={mainTodoMas}
+              setMainTodoMas={setMainTodoMas}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }
